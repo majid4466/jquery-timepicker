@@ -64,7 +64,12 @@ Language constants used in the timepicker. Can override the defaults by passing 
 	hrs: 'hrs'
 }```
 
+- **disabledTimes**
+Array of times you want to disable and make unselectable. As an example, the following code transforms input#start-time to a timepicker widget in which the second, third, ... times are disabled.
 
+	```javascript
+	jQuery('#start-time').timepicker({disabledTimes: [1,2,3,5,6,9]});
+	```
 
 Methods
 -------
