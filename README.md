@@ -125,6 +125,9 @@ Sample markup with class names:
 	<ul class="ui-timepicker-list optional-custom-classname" tabindex="-1">
 		<li>12:00am</li>
 		<li>12:30am</li>
+		<li class="disabled">01:00pm</li>
+		<li class="disabled">01:30pm</li>
+		<li>02:00pm</li>
 		...
 		<li>4:30pm</li>
 		<li class="ui-timepicker-selected">5:00pm</li>
