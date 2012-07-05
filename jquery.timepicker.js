@@ -20,7 +20,7 @@ requires jQuery 1.6+
 		timeFormat: 'g:ia',
 		scrollDefaultNow: false,
 		scrollDefaultTime: false,
-		disabledTimes: false, // false or index of list elements which are to be disabled like [3, 4, 5, 9, 10]
+		disabledTimes: false // false or index of list elements which are to be disabled like [3, 4, 5, 9, 10]
 	};
 	var _lang = {
 		decimal: '.',
