@@ -19,7 +19,8 @@ requires jQuery 1.6+
 		showDuration: false,
 		timeFormat: 'g:ia',
 		scrollDefaultNow: false,
-		scrollDefaultTime: false
+		scrollDefaultTime: false,
+		disabledTimes: false, // false or index of list elements which are to be disabled like [3, 4, 5, 9, 10]
 	};
 	var _lang = {
 		decimal: '.',
@@ -253,6 +254,8 @@ requires jQuery 1.6+
 			// make sure the end time is greater than start time, otherwise there will be no list to show
 			end += _ONE_DAY;
 		}
+		
+		var idx = 0; // counter to check if we have a disabled item
 
 		for (var i=start; i <= end; i += settings.step*60) {
 			var timeInt = i%_ONE_DAY;
@@ -266,6 +269,13 @@ requires jQuery 1.6+
 				duration.text(' ('+_int2duration(i - durStart)+')');
 				row.append(duration)
 			}
+			
+			// if this time is to be disabled
+			if(settings.disabledTimes && jQuery.inArray(idx, settings.disabledTimes) != -1) {
+				row.addClass('disabled');
+			}
+			idx++;
+	
 
 			list.append(row);
 		}
@@ -274,15 +284,17 @@ requires jQuery 1.6+
 		_setSelected(self, list);
 
 		list.delegate('li', 'click', { 'timepicker': self }, function(e) {
-			self.addClass('ui-timepicker-hideme');
-			self[0].focus();
+			if(!$(this).hasClass('disabled')) { // if this item is not disabled
+				self.addClass('ui-timepicker-hideme');
+				self[0].focus();
 
-			// make sure only the clicked row is selected
-			list.find('li').removeClass('ui-timepicker-selected');
-			$(this).addClass('ui-timepicker-selected');
+				// make sure only the clicked row is selected
+				list.find('li').removeClass('ui-timepicker-selected');
+				$(this).addClass('ui-timepicker-selected');
 
-			_selectValue(self);
-			list.hide();
+				_selectValue(self);
+				list.hide();
+			}
 		});
 	};
 
@@ -333,8 +345,11 @@ requires jQuery 1.6+
 		switch (e.keyCode) {
 
 			case 13: // return
-				_selectValue(self);
-				methods.hide.apply(this);
+				// if the selected item is not disabled
+				if(!$(list).children('.ui-timepicker-selected').hasClass('disabled')) {
+					_selectValue(self);
+					methods.hide.apply(this);
+				}
 				e.preventDefault();
 				return false;
 				break;
