@@ -4,6 +4,7 @@ Timepicker Plugin for jQuery
 [<img src="http://jonthornton.github.com/jquery-timepicker/lib/screenshot.png" alt="timepicker screenshot" />](http://jonthornton.github.com/jquery-timepicker)
 
 [See a demo and examples here](http://jonthornton.github.com/jquery-timepicker)
+
 [A demo of disabled times could be seen here](http://jqeedu.tuxfamily.org/demos/timepicker_with_disable/)
 
 jquery.timepicker is a timepicker plugin for jQuery inspired by Google Calendar. It supports both mouse and keyboard navigation.
